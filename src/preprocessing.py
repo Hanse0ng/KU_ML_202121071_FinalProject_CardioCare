@@ -10,7 +10,7 @@ def impute_missing_values(train_df, test_df=None):
     imputer = KNNImputer(n_neighbors=5)
     train_imputed = pd.DataFrame(imputer.fit_transform(train_df), columns=train_df.columns)
     if test_df is not None:
-        test_imputed = pd.DataFrame(imputer.fit_transform(test_df), columns=test_df.columns)
+        test_imputed = pd.DataFrame(imputer.transform(test_df), columns=test_df.columns)
         return train_imputed, test_imputed
     
     return train_imputed

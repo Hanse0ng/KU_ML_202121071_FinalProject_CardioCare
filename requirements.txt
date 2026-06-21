@@ -1,13 +1,14 @@
 ### 필수 도구 ###
 # 데이터 다운로드
-ucimrepo==0.0.7
+ucimlrepo==0.0.7
 
 # 데이터 분석 및 머신러닝
-pandas==3.0.3
+pandas
 numpy==2.4.6
-scikit-learn
+scikit-learn==1.9.0
 matplotlib
-scipy
+scipy==1.18.0
+psutil==7.2.2
 
 # MLOps
 mlflow==3.14.0
