@@ -1,3 +1,6 @@
+# 전처리 모듈
+# 필요한 곳에서 import하여 사용합니다.
+
 import pandas as pd
 import numpy as np
 from sklearn.impute import KNNImputer
@@ -36,8 +39,8 @@ def IQRClamp(df, bounds=None):
         else:
             lower, upper = bounds.get(col, (-np.inf, np.inf)) # bounds 없는 열은 제한 없음
         
-    # 각 열을 각자의 IQR 범위로 클램핑
-    df_clamped[col] = df_clamped[col].clip(lower=lower, upper=upper)
+        # 각 열을 각자의 IQR 범위로 클램핑
+        df_clamped[col] = df_clamped[col].clip(lower=lower, upper=upper)
     
     if bounds is None:
         return df_clamped, result_bounds
