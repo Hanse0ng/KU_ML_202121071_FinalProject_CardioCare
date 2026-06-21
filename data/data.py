@@ -1,4 +1,5 @@
 # 데이터셋을 읽어와 타깃 이진화 및 csv 저장을 수행하는 코드
+# 읽어오는 데이터는 UCI Hear Disease 데이터셋이며, 고전적인 Cleveland 부분 집합에 해당합니다.
 
 from ucimlrepo import fetch_ucirepo
 import os

@@ -6,8 +6,8 @@
 
 # 2. 재현
 - 채점자는 다음 과정을 통해 전 과정을 재현할 수 있습니다.
-1. 레포지토리 clone
-2. pip install -r requirements.txt
-3. python src/train.py
+1. 저장소 clone
+2. 의존성 설치: pip install -r requirements.txt
+3. 학습 실행: python src/train.py
 4. docker build
 5. python -m unittest
