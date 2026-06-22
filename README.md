@@ -25,3 +25,6 @@
    - python src/monitor.py
    - 또는
    - py src/monitor.py
+
+## 4. 기타
+- 데이터셋: 'data/'에는 기본적으로 사용한 Cleveland 부분 집합 데이터셋인 'heart_disease.csv'가 존재하며, 없더라도 'train.py' 실행 초기에 'data.py'를 통해 데이터가 로드됩니다.
