@@ -1,0 +1,14 @@
+artifact_uri: file:C:/_vscodeSource/PythonML/KU_ML_202121071_FinalProject_CardioCare/mlruns/795398829327742189/5a5f2b6daa644a6ea62e5cdcec03cd31/artifacts
+end_time: 1782135072276
+entry_point_name: ''
+experiment_id: '795398829327742189'
+lifecycle_stage: active
+run_id: 5a5f2b6daa644a6ea62e5cdcec03cd31
+run_name: SVC_Tuning
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1782135062990
+status: 3
+tags: []
+user_id: 로컬
