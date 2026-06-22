@@ -25,6 +25,8 @@
    - python src/monitor.py
    - 또는
    - py src/monitor.py
+- 'monitor.py'는 환자들의 건강 지표 일부('age', 'chol', 'oldpeak', 'thalach')가 점진적으로 악화되는 상황을 가정하여 드리프트 상황을 나타냈습니다. K-S 검정을 통해 드리프트를 탐지하고 그에 따른 정확도 감소를 터미널 출력 및 선 그래프로 시각화합니다.
 
 ## 4. 기타
 - 데이터셋: 'data/'에는 기본적으로 사용한 Cleveland 부분 집합 데이터셋인 'heart_disease.csv'가 존재하며, 없더라도 'train.py' 실행 초기에 'data.py'를 통해 데이터가 로드됩니다.
+- 'data/batch_input.csv'는 도커 이미지 실행 시 사용되는 작은 배치 입력 파일입니다. 필요시 내용을 수정합니다.
