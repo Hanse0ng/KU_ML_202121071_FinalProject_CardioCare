@@ -1,6 +1,6 @@
 FROM python:3.14-slim
 
-WORKDIR /app
+WORKDIR /ML_pipeline
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt

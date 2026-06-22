@@ -14,6 +14,8 @@ from sklearn.preprocessing import StandardScaler
 from preprocessing import clean_data, IQRClamp, impute_missing_values
 from train import SEED
 
+from sklearn.impute import KNNImputer
+
 class TestModelInference(unittest.TestCase):
     # 초기화
     def setUp(self):
@@ -26,11 +28,11 @@ class TestModelInference(unittest.TestCase):
         self.y_train = np.array([0, 1, 1, 0, 1])
         
         # 전처리 함수 적용
-        self.X_train_imputed, _ = impute_missing_values(self.X_train, self.X_train.copy())
-        self.X_train_clamped, self.train_bounds = IQRClamp(self.X_train_imputed)
+        self.X_train_clamped, self.train_bounds = IQRClamp(self.X_train)
         
         # 테스트용 파이프라인 생성
         self.pipeline = Pipeline(steps=[
+            ("imputer", KNNImputer(n_neighbors=2)),
             ("scaler", StandardScaler()),
             ("model", RandomForestClassifier(random_state=SEED))
         ])
@@ -38,13 +40,12 @@ class TestModelInference(unittest.TestCase):
         self.pipeline.fit(self.X_train_clamped, self.y_train)
         
     # 예측 결과의 shape이 입력 shape와 일치하는지 테스트
-    def test_output_shape_consistency(self):
+    def test_prediction_output_shape(self):
         X_test = pd.DataFrame({
             'age': [60, 40], 'cp': [1, 0], 'chol': [240, 190]
         })
         
-        _, X_test_imputed = impute_missing_values(self.X_train, X_test)
-        X_test_clamped = IQRClamp(X_test_imputed, self.train_bounds)
+        X_test_clamped = IQRClamp(X_test, self.train_bounds)
         predictions = self.pipeline.predict(X_test_clamped)
         
         self.assertEqual(len(X_test), len(predictions))
@@ -52,8 +53,7 @@ class TestModelInference(unittest.TestCase):
     # 예측 확률이 [0, 1] 범위 내에 있고 행마다 합이 약 1인지 테스트
     def test_probability_range(self):
         X_test = pd.DataFrame({'age': [50, 45], 'cp': [2, 1], 'chol': [210, 250]})
-        _, X_test_imputed = impute_missing_values(self.X_train, X_test)
-        X_test_clamped = IQRClamp(X_test_imputed, self.train_bounds)
+        X_test_clamped = IQRClamp(X_test, self.train_bounds)
         
         probabilities = self.pipeline.predict_proba(X_test_clamped)
         
@@ -65,15 +65,13 @@ class TestModelInference(unittest.TestCase):
         np.testing.assert_allclose(row_sums, 1.0, rtol=1e-5)
         
     # 임상적으로 범위가 정해진 특성에 대한 입력값 범위 검증
-    def test_value_range(self):
+    def test_input_values(self):
         X_test = pd.DataFrame({
             'age': [150, -4], 'cp': [0, 0], 'chol': [99999.9, -10.0]
         })
         
         try:
-            _, X_test_imputed = impute_missing_values(self.X_train, X_test)
-            X_clamped = IQRClamp(X_test_imputed, self.train_bounds)
-            
+            X_clamped = IQRClamp(X_test, self.train_bounds)
             prediction = self.pipeline.predict(X_clamped)
             self.assertTrue(prediction[0] in [0, 1])
         except Exception as e:
@@ -85,8 +83,7 @@ class TestModelInference(unittest.TestCase):
             'age': [45, 55], 'cp': [1, 2], 'chol': [220, 260]
         })
         
-        _, X_test_imputed = impute_missing_values(self.X_train, X_test)
-        X_test_clamped = IQRClamp(X_test_imputed, self.train_bounds)
+        X_test_clamped = IQRClamp(X_test, self.train_bounds)
         
         pred1 = self.pipeline.predict(X_test_clamped)
         pred2 = self.pipeline.predict(X_test_clamped)

@@ -9,5 +9,7 @@
 1. 저장소 clone
 2. 의존성 설치: pip install -r requirements.txt
 3. 학습 실행: python src/train.py
-4. docker build
-5. python -m unittest
+4. 도커 빌드 및 실행:
+   - 빌드: docker build -t cardiocare:1.0 .
+   - 실행: docker run cardiocare:1.0
+5. 단위 테스트: python -m unittest

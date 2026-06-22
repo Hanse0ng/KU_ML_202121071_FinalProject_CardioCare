@@ -55,32 +55,33 @@ if __name__ == "__main__":
         stratify=y
     )
 
-    # 결측치 및 이상치 처리는 분할 후 진행
-    # 결측치 처리
-    X_train_imputed, X_test_imputed = impute_missing_values(X_train, X_test)
-
     # 이상치 처리
-    X_train_clamped, train_bounds = IQRClamp(X_train_imputed)
-    X_test_clamped = IQRClamp(X_test_imputed, train_bounds)
+    X_train_clamped, train_bounds = IQRClamp(X_train)
+    X_test_clamped = IQRClamp(X_test, train_bounds)
 
     # 최종 데이터
     X_train_final = X_train_clamped
     X_test_final = X_test_clamped
 
-    # 세 모델에 대한 파이프라인 구성
+    # 세 모델에 대한 파이프라인 구성 (KNNImputer를 파이프라인 안으로 삽입)
+    from sklearn.impute import KNNImputer
+    
     pipelines = {
         "LogisticRegression": Pipeline(steps=[
+            ("imputer", KNNImputer(n_neighbors=5)),
             ("scaler", StandardScaler()),
             ("feature_selection", SelectFromModel(RandomForestClassifier(random_state=SEED))),
             ("model", LogisticRegression(random_state=SEED))
         ]),
         "SVC": Pipeline(steps=[
+            ("imputer", KNNImputer(n_neighbors=5)),
             ("scaler", StandardScaler()),
             ("feature_selection", SelectFromModel(RandomForestClassifier(random_state=SEED))),
             ("model", SVC(random_state=SEED))
         ]),
         # RandomForest는 거리 기반 모델이 아니므로 스케일러 생략
         "RandomForest": Pipeline(steps=[
+            ("imputer", KNNImputer(n_neighbors=5)),
             ("feature_selection", SelectFromModel(RandomForestClassifier(random_state=SEED))),
             ("model", RandomForestClassifier(random_state=SEED))
         ])
@@ -177,7 +178,7 @@ if __name__ == "__main__":
     # 따라서 재현율(Recall)이 높은 모델이 가장 유력하다.
     # 5-fold 교차 검증을 거친 후 CV 평균 Recall이 가장 높은 것을 유력한 모델로 선정한다.
     # 현재 데이터셋으로는 SVC가 가장 유력한 모델이다.
-    print(f"\n==============================\n선정된 가장 유력한 모델: {best_model}\n==============================\n")
+    print(f"\n==============================\n선정된 가장 유력한 모델: {best_model} (재현율이 가장 높은 모델)\n==============================\n")
 
     # 세 모델 중 하나를 선정하므로, 각 모델에 맞는 탐색 공간 사전 정의
     param_grid = {
