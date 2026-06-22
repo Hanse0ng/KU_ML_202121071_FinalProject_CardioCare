@@ -111,7 +111,6 @@ def main():
         print(f"Feature: {feature:10s} | p-value: {p_value:.4f} | {flag_str}")
         
     # 드리프트된 데이터 예측 및 성능 비교
-    # 드리프트된 데이터도 IQR 전처리만 거쳐 추론 (결측치는 파이프라인이 자동 처리)
     X_test_drifted_clamped = IQRClamp(X_test_drifted, train_bounds)
     
     preds_drifted = model.predict(X_test_drifted_clamped)
