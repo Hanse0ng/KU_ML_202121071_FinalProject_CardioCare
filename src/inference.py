@@ -3,12 +3,15 @@ import sys
 import json
 import yaml
 import pandas as pd
+import os
+os.environ["MLFLOW_ALLOW_FILE_STORE"] = "true"
 import mlflow
-from preprocessing import impute_missing_values, IQRClamp
+from preprocessing import IQRClamp
 
 # MLflow 기록을 조회하여 가장 유력한 모델의 로컬 디렉토리와 전처리 기준 파일 경로를 반환
 def get_best_model_artifacts():
-    mlflow.set_tracking_uri("sqlite:///mlflow.db")
+    # 전역 설정을 무시하고 명시적으로 로컬 텍스트 방식 강제
+    mlflow.set_tracking_uri("file:./mlruns")
     experiment = mlflow.get_experiment_by_name("Heart Disease Classification")
     if not experiment:
         raise ValueError("MLflow 실험을 찾을 수 없습니다.")

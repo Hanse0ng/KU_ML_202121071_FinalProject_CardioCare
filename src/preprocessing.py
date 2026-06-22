@@ -5,16 +5,6 @@ import pandas as pd
 import numpy as np
 from sklearn.impute import KNNImputer
 
-# 결측치 처리 함수 (KNN 대치)
-def impute_missing_values(train_df, test_df=None):
-    imputer = KNNImputer(n_neighbors=5)
-    train_imputed = pd.DataFrame(imputer.fit_transform(train_df), columns=train_df.columns)
-    if test_df is not None:
-        test_imputed = pd.DataFrame(imputer.transform(test_df), columns=test_df.columns)
-        return train_imputed, test_imputed
-    
-    return train_imputed
-
 # 이상치 처리 함수 (IQR 클램핑): 이상치는 최소/최대치로 제한됨
 def IQRClamp(df, bounds=None):
     df_clamped = df.copy()

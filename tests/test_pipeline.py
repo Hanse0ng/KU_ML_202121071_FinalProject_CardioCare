@@ -11,7 +11,7 @@ import pandas as pd
 from sklearn.pipeline import Pipeline
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler
-from preprocessing import clean_data, IQRClamp, impute_missing_values
+from preprocessing import clean_data, IQRClamp
 from train import SEED
 
 from sklearn.impute import KNNImputer

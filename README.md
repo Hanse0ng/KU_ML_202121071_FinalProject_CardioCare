@@ -19,3 +19,9 @@
    - python -m unittest
    - 또는
    - py -m unittest
+
+## 3. 모니터링
+- 채점자는 "2. 재현" 과정 이후 다음 명령어를 통해 과제 요구사항 5번(모니터링 및 데이터 드리프트 탐지)의 결과를 확인할 수 있습니다.
+   - python src/monitor.py
+   - 또는
+   - py src/monitor.py

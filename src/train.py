@@ -1,7 +1,7 @@
 # 모델 학습을 담당하는 메인 스크립트
 # 총 3개의 모델을 학습/비교 (Logistic Regression, SVC, Random Forest)
 
-from preprocessing import clean_data, IQRClamp, impute_missing_values
+from preprocessing import clean_data, IQRClamp
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -13,8 +13,11 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.metrics import balanced_accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 from sklearn.model_selection import cross_validate, GridSearchCV
+import os
 import mlflow
 import mlflow.sklearn
+
+os.environ["MLFLOW_ALLOW_FILE_STORE"] = "true"
 
 # 올바른 재현을 위한 시드 고정 및 train/test 분할 비율 명시
 # 재현을 위해 시드(SEED)는 어떤 값이든 하나의 값을 고정 사용하면 되므로 1로 설정
@@ -23,7 +26,6 @@ import mlflow.sklearn
 SEED = 1
 test_size = 0.2 # 테스트 20%, 훈련 80%
 
-import os
 import sys
 import subprocess
 
@@ -95,6 +97,8 @@ if __name__ == "__main__":
     best_recall = -1.0
     best_pipeline = None
 
+    # 전역 설정을 무시하고 명시적으로 로컬 텍스트 방식 강제
+    mlflow.set_tracking_uri("file:./mlruns")
     mlflow.set_experiment("Heart Disease Classification")
 
     for model, pipeline in pipelines.items():
