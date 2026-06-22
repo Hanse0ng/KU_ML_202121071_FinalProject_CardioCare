@@ -172,10 +172,10 @@ if __name__ == "__main__":
 
             # 모든 모델에 대해 balanced accuracy, precision, recall, F1, confusion matrix 를 보고
             print("[MLflow 로깅 결과]")
-            print(f"Balanced Accuracy: {metrics['balanced_accuracy']}")
-            print(f"Precision: {metrics['precision']}")
-            print(f"Recall: {metrics['recall']}")
-            print(f"F1: {metrics['f1']}")
+            print(f"Balanced Accuracy: {metrics['balanced_accuracy']:.4f}")
+            print(f"Precision: {metrics['precision']:.4f}")
+            print(f"Recall: {metrics['recall']:.4f}")
+            print(f"F1: {metrics['f1']:.4f}")
             print(f"Confusion Matrix:\n{cm}")
 
     # [최종 모델 선택 및 임상적 맥락에서 선택 사유 정당화]
@@ -234,7 +234,7 @@ if __name__ == "__main__":
         
         print(f"[{best_model} 튜닝 후 최종 결과]")
         print(f"최적 파라미터: {grid_search.best_params_}")
-        print(f"최종 Recall: {metrics_tuned['final_recall']}")
+        print(f"최종 Recall: {metrics_tuned['final_recall']:.4f}")
         print(f"최종 혼동 행렬:\n{cm_tuned}")
         
         # 최종 평가 지표 계산 및 로깅
