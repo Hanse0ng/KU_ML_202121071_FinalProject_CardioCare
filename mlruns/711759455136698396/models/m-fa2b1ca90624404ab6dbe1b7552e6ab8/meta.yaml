@@ -1,0 +1,10 @@
+artifact_location: file:C:/_vscodeSource/PythonML/KU_ML_202121071_FinalProject_CardioCare/mlruns/711759455136698396/models/m-fa2b1ca90624404ab6dbe1b7552e6ab8/artifacts
+creation_timestamp: 1782134084103
+experiment_id: '711759455136698396'
+last_updated_timestamp: 1782134089332
+model_id: m-fa2b1ca90624404ab6dbe1b7552e6ab8
+model_type: null
+name: model
+source_run_id: 191e48db557e443a981088ee74a7f3e2
+status: 2
+status_message: null

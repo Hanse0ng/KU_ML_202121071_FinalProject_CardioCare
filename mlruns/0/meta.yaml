@@ -1,8 +1,8 @@
 artifact_location: file:C:/_vscodeSource/PythonML/KU_ML_202121071_FinalProject_CardioCare/mlruns/0
-creation_time: 1782101552475
+creation_time: 1782134083227
 effective_trace_archival_retention: null
 experiment_id: '0'
-last_update_time: 1782101552475
+last_update_time: 1782134083227
 lifecycle_stage: active
 name: Default
 trace_location: null

@@ -1,0 +1,14 @@
+artifact_uri: file:C:/_vscodeSource/PythonML/KU_ML_202121071_FinalProject_CardioCare/mlruns/711759455136698396/cf0ecb8cff31494684aa01c6b1edf8fd/artifacts
+end_time: 1782134098272
+entry_point_name: ''
+experiment_id: '711759455136698396'
+lifecycle_stage: active
+run_id: cf0ecb8cff31494684aa01c6b1edf8fd
+run_name: RandomForest
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1782134093615
+status: 3
+tags: []
+user_id: 로컬
