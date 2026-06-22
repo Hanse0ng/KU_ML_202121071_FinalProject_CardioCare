@@ -17,6 +17,7 @@ import os
 import mlflow
 import mlflow.sklearn
 
+# mlflow의 mlruns/ 사용 제한 해제
 os.environ["MLFLOW_ALLOW_FILE_STORE"] = "true"
 
 # 올바른 재현을 위한 시드 고정 및 train/test 분할 비율 명시

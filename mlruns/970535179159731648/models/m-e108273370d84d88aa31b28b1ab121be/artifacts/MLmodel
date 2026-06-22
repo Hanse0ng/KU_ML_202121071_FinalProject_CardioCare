@@ -1,0 +1,23 @@
+artifact_path: file:C:/_vscodeSource/PythonML/KU_ML_202121071_FinalProject_CardioCare/mlruns/970535179159731648/models/m-e108273370d84d88aa31b28b1ab121be/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.skops
+    predict_fn: predict
+    python_version: 3.14.1
+  sklearn:
+    code: null
+    pickled_model: model.skops
+    serialization_format: skops
+    sklearn_version: 1.9.0
+    skops_trusted_types: null
+mlflow_version: 3.14.0
+model_id: m-e108273370d84d88aa31b28b1ab121be
+model_size_bytes: 6246068
+model_uuid: m-e108273370d84d88aa31b28b1ab121be
+prompts: null
+run_id: 112c9808f96146feafd1c82d95bb65a4
+utc_time_created: '2026-06-22 04:31:50.468263'

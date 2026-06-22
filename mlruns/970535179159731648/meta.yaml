@@ -1,0 +1,9 @@
+artifact_location: file:C:/_vscodeSource/PythonML/KU_ML_202121071_FinalProject_CardioCare/mlruns/970535179159731648
+creation_time: 1782102699212
+effective_trace_archival_retention: null
+experiment_id: '970535179159731648'
+last_update_time: 1782102699212
+lifecycle_stage: active
+name: Heart Disease Classification
+trace_location: null
+workspace: default
